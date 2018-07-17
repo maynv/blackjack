@@ -111,14 +111,15 @@
     margin-top: 20pt;
     width: 100pt;
     height: 50pt;
-    border-style: ridge;
+    /* border-style: ridge; */
 }
 .player-common{
     height : 200pt;
  /* /   background-color: beige; */
 }
 .player-ingame{
-    
+    display: flex;
+    flex-direction: column;
 }
 #player-infor{
     background-color: orange;
@@ -127,4 +128,7 @@
 #player-input{
     background-color: turquoise;
     width: 400pt;
+}
+#this{
+    background-color: azure;
 }

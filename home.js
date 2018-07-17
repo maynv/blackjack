@@ -34,9 +34,9 @@ let dealerTitle=document.getElementById("dealer-title");
 let dealerScore=document.getElementById("dealer-score");
 let dealerListcard=document.getElementById("dealer-listcard");
 // player
-let playerTitle=document.getElementById("player-title");
-let playerScore=document.getElementById("player-score");
-let playerListcard=document.getElementById("player-listcard");
+let playerTitle=document.getElementById("player-title1");
+let playerScore=document.getElementById("player-score1");
+let playerListcard=document.getElementById("player-listcard1");
 //
 // 
 
