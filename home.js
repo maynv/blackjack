@@ -26,7 +26,7 @@ let Player={
     };
 let decks=[];
 // DOM elements
-let textArea=document.getElementById("text-area");
+// let textArea=document.getElementById("text-area");
 let newGamebutton=document.getElementById("new-game-button");
 let hitButton=document.getElementById("hit-button");
 let stayButton=document.getElementById("stay-button");
@@ -132,7 +132,7 @@ function calculateScore(liscard){
     return score;
 }
 function gameDisplay(){
-        textArea.innerText=gameStatus;
+        // textArea.innerText=gameStatus;
         if(gameOver ){
             newGamebutton.style.display="block";
             hitButton.style.display="none";
