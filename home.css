@@ -1,0 +1,130 @@
+/* .body-container{
+    border-style: ridge;
+    background-color:aquamarine;
+}
+#body-container{
+    display: flex ;
+    flex-direction : column; 
+    box-sizing: border-box;
+    height: 100%;
+}
+.header-main{
+    border-style :inherit;
+}
+#header-main{
+    border-style :inherit;
+} */
+#body-page{
+    display: flex;
+    flex-direction: column ;
+    justify-content: space-around;
+}
+#main-title{
+    /* background-color: blanchedalmond; */
+    height: 70pt;
+    padding: 1pt;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#title-logo{
+    width: 150pt;
+    background-color: blueviolet;
+    background-image: url("image/logo3.png");
+    width: 80pt;
+    height: 70pt;
+
+}
+#title-title{
+    text-align: center;
+    font-size: 35pt;
+    
+    margin-top: 10pt;
+}
+#menu-container{
+    padding: 3pt;
+    justify-content: space-around;
+    background-color: dodgerblue;
+ 
+    width : 100%;
+    height: 100pt;
+
+    display: flex;
+}   
+#main-container{
+    padding: 3pt;
+    
+    display: flex;
+    height:500pt;
+    background-color: aqua;
+    /* background-color: aquamarine; */  
+}
+#dealer-container{
+    width: 30%;
+    flex-direction: column;
+    background-color: rgb(122, 141, 204);
+    display: flex;
+}
+#player-container{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(173, 219, 204);
+    width: 70%;
+}
+.list-player{
+    padding: 2pt;
+    width : 190pt;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+}
+#dealer-listcard{
+    padding: 0;
+    margin: 0;
+}
+#player-listcard{
+    margin:0;
+}
+#footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 65pt;
+    padding: 1pt;
+    background-color: chartreuse;
+    text-align: center;
+    color: red;
+    font-size:30pt;
+}
+.player{
+    display: flex;
+    flex-direction: column;
+}
+#player-button{
+    display: flex;
+    justify-content: space-around;
+    background-color:chartreuse;
+    width: 350pt;
+}
+.game-button{
+    margin-top: 20pt;
+    width: 100pt;
+    height: 50pt;
+    border-style: ridge;
+}
+.player-common{
+    height : 200pt;
+ /* /   background-color: beige; */
+}
+.player-ingame{
+    
+}
+#player-infor{
+    background-color: orange;
+    width: 400pt;
+}
+#player-input{
+    background-color: turquoise;
+    width: 400pt;
+}
