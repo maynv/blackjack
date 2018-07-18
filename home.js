@@ -20,11 +20,18 @@ let Dealer={
         dealerScore: 0,
     };
 let Player={
+        idIngame  :0,
         playerCards:[],
         playerName :"Dash",
         playerScore:0,
+        betAmount:0,
+        budget :0
     };
 let decks=[];
+let inGame ={
+    betAmount : 0,
+    numOfplayer : 0,
+};
 // DOM elements
 // let textArea=document.getElementById("text-area");
 let newGamebutton=document.getElementById("new-game-button");
