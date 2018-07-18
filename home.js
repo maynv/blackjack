@@ -22,6 +22,7 @@ let Dealer={
         dealerScore: 0,
     };
 let Player={
+        state : false,
         idIngame  :"",
         playerCards:[],
         playerName :"Dash",
@@ -29,6 +30,8 @@ let Player={
         betAmount:0,
         budget :0
     };
+let Players = [];
+let thisPlayer=Player;
 let decks=[];
 let varinGame ={
     betAmount : 0,
@@ -36,6 +39,9 @@ let varinGame ={
     currency :"$",
 };
 /*get HTML DOM elements*/
+// HTML container
+    // Input container
+        let inputcontainer=document.getElementById("inputcontainer");
 // get button
     // newgame button
         let newGamebutton=document.getElementById("new-game-button");
@@ -43,6 +49,10 @@ let varinGame ={
         let hitButton=document.getElementById("hit-button");
     // stay button
         let stayButton=document.getElementById("stay-button");
+    // input button
+        let inputButton=document.getElementById("input-submit");
+    // all button
+        let allButton=document.getElementById("all");
 // dealer DOM
     // dealer name
         let dealerTitle=document.getElementById("dealer-title");
@@ -56,9 +66,13 @@ let varinGame ={
         let dealerScore=document.getElementById("dealer-score");
     // dealer listcard ingame
         let dealerListcard=document.getElementById("dealer-listcard");
+    // dealer numofplayer
+        let numofplayer=document.getElementById("numofplayer");
+    // dealer totalbet
+        let totalbet=document.getElementById("totalbet");
 // player
     // player name
-        let playerTitle=document.getElementById("player-title1");
+        let playerTitle1=document.getElementById("player-title1");
     // player avater
         let player_avatar1=document.getElementById("player-avatar1");
     // player id
@@ -66,10 +80,14 @@ let varinGame ={
     // player budget
         let player_budget1=document.getElementById("player-budget1");
     // player scores ingame
-        let playerScore=document.getElementById("player-score1");
+        let playerScore1=document.getElementById("player-score1");
     // player liscard ingame 
-        let playerListcard=document.getElementById("player-listcard1");
-//
+        let playerListcard1=document.getElementById("player-listcard1");
+    // player betted amount
+        let playerBettedamount1=document.getElementById("betted1");
+//input
+    // input bet
+    let inputBet=document.getElementById("input-bet");
 //
 function createDeck(){
     let deck=[];
@@ -101,8 +119,27 @@ function cardShuffle(deck){
     }
 }
 //
-
+function getResult(){
+    if(gameOver){
+        if(playerWon){
+            thisPlayer.budget+=thisPlayer.betAmount;
+            Dealer.budget-=varinGame.betAmount;
+            alert("player won");
+            allButton.style.display='none';
+            inputButton.style.display='none';
+        }
+        else{
+            thisPlayer.budget-=thisPlayer.betAmount;
+            Dealer.budget+=varinGame.betAmount;
+            alert("Dealer won");
+            allButton.style.display='none';
+            inputButton.style.display='none';
+        }
+    }
+}
 function checkSystem(){
+    varinGame.numOfplayer = Players.length;
+    totalbet.innerText=varinGame.betAmount;
     if( gameStated){ // gameStatus = true
         gameStatus="Game Started...!";
     }
@@ -110,16 +147,18 @@ function checkSystem(){
         gameStatus="Welcome to Dash Center";
     }
     Dealer.dealerScore=calculateScore(Dealer.dealerCards);
-    Player.playerScore=calculateScore(Player.playerCards);
+    thisPlayer.playerScore=calculateScore(thisPlayer.playerCards);
+    /* */
     if(Dealer.dealerScore >= 21){
         gameOver =true ;
         gameStated =false;
     }
-    else if(  Player.playerScore >= 21){
+    else if(  thisPlayer.playerScore >= 21){
         gameOver =true ;
         playerWon =true ;
         gameStated =false;
     }
+    getResult();
 }
 function getMsgshowCard(listcard){
     let msg="List Card:\n";
@@ -171,50 +210,36 @@ function gameDisplay(){
         // Dealer
         dealerTitle.innerText=Dealer.dealerName;
         dealerScore.innerText="Score:"+Dealer.dealerScore;
-        dealerListcard.innerText=getMsgshowCard(Dealer.dealerCards);
+        dealerListcard.innerText = getMsgshowCard(Dealer.dealerCards);
+        numofplayer.innerText = varinGame.numOfplayer;
+        dealer_budget.innerText=Dealer.budget+" "+varinGame.currency;
+        totalbet.innerText = varinGame.betAmount + varinGame.currency;
         // Update player
-        playerTitle.innerText=Player.playerName;
-        playerScore.innerText="Score:"+Player.playerScore;
-        playerListcard.innerText=getMsgshowCard(Player.playerCards);
-        console.log(gameStated);
+        player_budget1.innerText=thisPlayer.budget+" "+varinGame.currency;
+        playerTitle1.innerText=thisPlayer.playerName;
+        playerScore1.innerText="Score:"+thisPlayer.playerScore;
+        playerListcard1.innerText=getMsgshowCard(thisPlayer.playerCards);
+        // console.log(gameStated);
 }
 //
 function updateGame(){
     checkSystem();
     gameDisplay();
     //console.log(Player.playerCards);
-    console.log(typeof(Dealer.dealerCards),typeof(getNextCard()));
+    // console.log(typeof(Dealer.dealerCards),typeof(getNextCard()));
 }
 //
-function update_playerinformation(){
 
-}
 //
 function start_game(){
     if(gameStated == true){
         decks=createDeck();
         cardShuffle(decks);
-        Dealer.dealerCards=[getNextCard()  ];
-        Player.playerCards=[getNextCard()  ];
-        update_playerinformation();
+        //Dealer.dealerCards=[getNextCard()  ];
+        //thisPlayer.playerCards=[getNextCard()  ];
     }
 }
-function initGame(){
-    // init player
-    // init dealer
-    Dealer.dealerCards = [];
-    Dealer.dealerScore = 0;
-    // data will take from server
-    Dealer.idIngame="BJ120-1259-2134";
-    Dealer.budget=2000000;
-    // init player
-    Player.budget=1000000; 
-    Player.idIngame="BJ111-1259-1544";
-    Player.playerCards =[];
-    Player.playerScore =0;
-    gameOver =false ;
-    playerWon =false;
-
+function playerUpdateinformation(){
     //init DOM
     // update dealer 
         // update dealer avatar
@@ -228,27 +253,103 @@ function initGame(){
         // update avatar   
             player_avatar1.setAttribute("src","image/player_avatar.png");
         // update information
-            player_id1.innerText="ID:"+Player.idIngame;
-            player_budget1.innerText=Player.budget+" "+varinGame.currency;
-            playerTitle.innerText=Player.dealerName;
+            player_id1.innerText="ID:"+thisPlayer.idIngame;
+            player_budget1.innerText=thisPlayer.budget+" "+varinGame.currency;
+            playerTitle1.innerText=thisPlayer.playerName;
+}
+function initNewgame(){
+    // init flags
+    gameOver =false ;
+    playerWon =false;
+    // init variables
+    thisPlayer.playerCards =[];
+    thisPlayer.playerScore =0;
+    Dealer.dealerCards = [];
+    Dealer.dealerScore = 0;
+    varinGame.betAmount=0;
+    thisPlayer.betAmount=0;
+    // init button
+    inputButton.style.display="block";
+    allButton.style.display='block';
+    // init show
+
+    totalbet.innerText="0";
+    playerBettedamount1.innerText="0";
+    inputBet.value="0";
+    playerUpdateinformation();
+}
+function initGame(){
+    // init player
+    // init dealer
+    
+    // data will take from server
+    Dealer.idIngame="BJ120-1259-2134";
+    Dealer.budget=2000000;
+    // init player
+    thisPlayer.budget=1000000; 
+    thisPlayer.idIngame="BJ111-1259-1544";
+    Players.push(thisPlayer);
+    initNewgame();
+    playerUpdateinformation();
 }
 
-
+function getBet(){
+    let betFlag = false;
+    let betLog = 0;
+    inputButton.addEventListener("click",function(){
+        thisPlayer.betAmount = Number(inputBet.value);
+        if(thisPlayer.betAmount <= thisPlayer.budget){
+            playerBettedamount1.innerText = thisPlayer.betAmount+varinGame.currency; 
+            betLog = thisPlayer.betAmount;
+            varinGame.betAmount += thisPlayer.betAmount;
+            updateGame();
+            // inputBet.value = "0";
+            inputButton.style.display = 'none';
+            betFlag = true;
+            console.log("betted :"+inputBet.value);
+            console.log("gameBet:"+varinGame.betAmount);
+        }
+        else{
+             alert("not enough Money !!");
+            // inputBet.value="0";
+        }
+    });
+    allButton.addEventListener("click",function(){
+        thisPlayer.betAmount=thisPlayer.budget;
+        playerBettedamount1.innerText=thisPlayer.betAmount+varinGame.currency;
+        if(betFlag==true){
+            varinGame.betAmount += thisPlayer.betAmount;
+            varinGame.betAmount-=betLog;
+        }
+        else{
+            varinGame.betAmount += thisPlayer.betAmount;
+        }
+        updateGame();
+        inputBet.value="0";
+        inputButton.style.display='none';
+        allButton.style.display='none';
+    });
+}
 
 function Home(){
     // init status
     hitButton.style.display='none';
     stayButton.style.display='none';
-    
+    initGame();
+    // inputcontainer.style.display="none";
+    // player-input
     // init values and flags
     /* waiting for the event */
     newGamebutton.addEventListener("click",function(){
         gameStated=true;
-        initGame();
+        initNewgame();
+        getBet();
         start_game();
+        //  inputcontainer.style.display="inline";
         newGamebutton.style.display='none';
         hitButton.style.display='inline';
         stayButton.style.display='inline';
+        // all.style.display="none";
         updateGame();
     });
 
@@ -258,11 +359,12 @@ function Home(){
 
 function inGame(){
     stayButton.addEventListener("click",function(){
+       // inputButton.style.display='block';
     });
     hitButton.addEventListener("click",function(){
         if(! gameOver && decks.length > 0 ){
             Dealer.dealerCards.push(getNextCard());
-            Player.playerCards.push(getNextCard());
+            thisPlayer.playerCards.push(getNextCard());
             updateGame();
         }
     });
