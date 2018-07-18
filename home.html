@@ -5,20 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="home.css">
+    <script src="jquery-3.3.1.min.js"></script>
     <!-- <script src="home.js"></script> -->
     <title>Dash.com</title>
 </head>
 <body id="body-page">
-    <!--  -->
-   <!-- <div class="body-container" id="body-container">
-        <div class="header-main" id="header-main" > header</div>
-        <div class="body-main" id="body-main"> 
-            BODY
-        </div>
-        <div class="footer-main" id="footer-main"> footer</div>
-   </div>  -->
-   <!--  -->
-   <!-- set up a web page -->
    <div id="main-title" >
             <div id="title-logo"></div>
             <div id="title-title"> BlackJack</div>
@@ -26,16 +17,18 @@
    <div id="main-container">
         <div id="dealer-container" class="player">
                 <div id="dealer-common" class="player-common" >
-                    <!-- <div id="dealer-avatar" class="player-avatar">Avatar</div> -->
-                    <img id="dealer-avatar" class="player-avatar" src="" alt="dealer-avatar">
-                    <div id="dealer-information" class="player-informaton" >
-                       <div id="dealer-title" class="player-title"></div>
-                       <div id="dealer-id" class="player-id"></div>
-                       <div id="dealer-budget" class="player-budget" > </div>
+                     <div  style="display: flex ; flex-direction: row;" >  
+                        <!-- <div id="dealer-avatar" class="player-avatar">Avatar</div> -->
+                        <img id="dealer-avatar" src="" alt="dealer-avatar">
+                        <div id="dealer-information" class="player-information" >
+                        <div id="dealer-title" class="player-title"></div>
+                        <div id="dealer-id" class="player-id"></div>
+                        <div id="dealer-budget" class="player-budget" > </div>
+                        </div>
                     </div>
                     <div id="ingame-information">
-                        <div>betAmount</div>
-                        <div>NumofPlayer</div>
+                        <div id="numofplayer"></div>
+                        <div id="totalbet"></div>
                     </div>
                     
                 </div>
@@ -48,11 +41,18 @@
         <div id="player-container" class="player">
             <div class="list-player" id="this">
                     <div id="player-common1" class="player-common">
-                        <img id="player-avatar1" class="player-avatar" src="" alt="player-avatar">
-                        <div id="player-information1" class="player-informaton">
-                           <div id="player-title1"  class="player-title" ></div>
-                           <div id="player-id1"  class="player-id"></div>
-                           <div id="player-budget1" class="player-budget" > </div>
+                        <div style="display: flex ; flex-direction: row;">
+                            <img id="player-avatar1" class="player-avatar" src="" alt="player-avatar">
+                            <div id="player-information1" class="player-informaton">
+                                <div id="player-title1"  class="player-title" ></div>
+                                <div id="player-id1"  class="player-id"></div>
+                                <div id="player-budget1" class="player-budget" > </div>
+                            </div>
+                        </div>
+                        <div id="player-notice1">
+                            <p id="betted1">
+                                
+                            </p>
                         </div>
                     </div>
                     <div id="player-ingame1" class="player-ingame">
@@ -76,22 +76,8 @@
                     <div id="player-common5" class="player-common">A</div>
                     <div id="player-ingame5" class="player-ingame">B</div>
             </div>
-
         </div>
-           <!-- <div id="main-container">
-                <div id="dealer-container">
-                    <div id="dealer-title">  </div>
-                    <div id="dealer-score"> </div>
 
-                    <p id="dealer-listcard"></p>
-                </div>
-                <div id="player-container">
-                    <div id="player-title">  </div>
-                    <div id="player-score"> </div>
-
-                    <p id="player-listcard"></p>
-                </div> 
-           </div> -->
     </div>
     <div id="menu-container">
         <div id="player-infor"> Info</div>
@@ -100,13 +86,18 @@
             <button class="game-button" id="hit-button"> Hit! </button>
             <button class="game-button" id="stay-button"> Stay </button>
         </div>
-        <div id="player-input"> inppppppppppppppppppppppppppppppppppput</div>
-            <!-- <h1 id="title">  </h1>
-            <br>
-            <p id="text-area"> Welcome to Dash Center </p>
-            <button id="new-game-button"> New Game </button>
-            <button id="hit-button"> Hit! </button>
-            <button id="stay-button"> Stay </button> -->
+        <div id="player-input">
+            <div id="inputcontainer">
+                <div id="input-form" >
+                    <p id="title-input">Place a BET </p>
+                    <input type="text" id="input-bet" value="0">
+                </div>
+                <div id="submit-input">
+                    <p id="input-submit">BET</p>
+                    <P id="all">ALL</P>
+                </div>    
+            </div>
+        </div>
     </div>
     <div id="footer"> Animal Rescue
         <p style="margin : 0; color: black ; font-size: 17pt ;">...only at Las Vegas</p>
