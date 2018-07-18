@@ -15,12 +15,14 @@ let gameStated=false,
     playerWon=false;
 let gameStatus="Welcome to Dash Center";
 let Dealer={
+        idIngame  :"",
+        budget:0,
         dealerCards: [],
         dealerName: "Batman(Bot)",
         dealerScore: 0,
     };
 let Player={
-        idIngame  :0,
+        idIngame  :"",
         playerCards:[],
         playerName :"Dash",
         playerScore:0,
@@ -28,25 +30,46 @@ let Player={
         budget :0
     };
 let decks=[];
-let inGame ={
+let varinGame ={
     betAmount : 0,
     numOfplayer : 0,
+    currency :"$",
 };
-// DOM elements
-// let textArea=document.getElementById("text-area");
-let newGamebutton=document.getElementById("new-game-button");
-let hitButton=document.getElementById("hit-button");
-let stayButton=document.getElementById("stay-button");
-let dealerTitle=document.getElementById("dealer-title");
-let dealerScore=document.getElementById("dealer-score");
-let dealerListcard=document.getElementById("dealer-listcard");
+/*get HTML DOM elements*/
+// get button
+    // newgame button
+        let newGamebutton=document.getElementById("new-game-button");
+    // hit button
+        let hitButton=document.getElementById("hit-button");
+    // stay button
+        let stayButton=document.getElementById("stay-button");
+// dealer DOM
+    // dealer name
+        let dealerTitle=document.getElementById("dealer-title");
+    // dealer avatar
+        let dealer_avatar=document.getElementById("dealer-avatar");
+    // dealer 
+        let dealer_id=document.getElementById("dealer-id");
+    // dealer budget
+        let dealer_budget=document.getElementById("dealer-budget");
+    // dealer score ingame
+        let dealerScore=document.getElementById("dealer-score");
+    // dealer listcard ingame
+        let dealerListcard=document.getElementById("dealer-listcard");
 // player
-let playerTitle=document.getElementById("player-title1");
-let playerScore=document.getElementById("player-score1");
-let playerListcard=document.getElementById("player-listcard1");
+    // player name
+        let playerTitle=document.getElementById("player-title1");
+    // player avater
+        let player_avatar1=document.getElementById("player-avatar1");
+    // player id
+        let player_id1=document.getElementById("player-id1");
+    // player budget
+        let player_budget1=document.getElementById("player-budget1");
+    // player scores ingame
+        let playerScore=document.getElementById("player-score1");
+    // player liscard ingame 
+        let playerListcard=document.getElementById("player-listcard1");
 //
-// 
-
 //
 function createDeck(){
     let deck=[];
@@ -162,37 +185,67 @@ function updateGame(){
     //console.log(Player.playerCards);
     console.log(typeof(Dealer.dealerCards),typeof(getNextCard()));
 }
-
 //
-function stat_game(){
+function update_playerinformation(){
+
+}
+//
+function start_game(){
     if(gameStated == true){
         decks=createDeck();
         cardShuffle(decks);
         Dealer.dealerCards=[getNextCard()  ];
         Player.playerCards=[getNextCard()  ];
-        
+        update_playerinformation();
     }
 }
 function initGame(){
+    // init player
+    // init dealer
     Dealer.dealerCards = [];
     Dealer.dealerScore = 0;
+    // data will take from server
+    Dealer.idIngame="BJ120-1259-2134";
+    Dealer.budget=2000000;
+    // init player
+    Player.budget=1000000; 
+    Player.idIngame="BJ111-1259-1544";
     Player.playerCards =[];
     Player.playerScore =0;
     gameOver =false ;
     playerWon =false;
+
+    //init DOM
+    // update dealer 
+        // update dealer avatar
+            dealer_avatar.setAttribute("src","image/dealer_avatar.png");
+        // update information
+            dealer_id.innerText="ID:"+Dealer.idIngame;
+            dealer_budget.innerText=Dealer.budget+" "+varinGame.currency;
+            dealerTitle.innerText=Dealer.dealerName;
+
+    // update players
+        // update avatar   
+            player_avatar1.setAttribute("src","image/player_avatar.png");
+        // update information
+            player_id1.innerText="ID:"+Player.idIngame;
+            player_budget1.innerText=Player.budget+" "+varinGame.currency;
+            playerTitle.innerText=Player.dealerName;
 }
+
+
+
 function Home(){
     // init status
     hitButton.style.display='none';
     stayButton.style.display='none';
-    dealerTitle.innerText=Dealer.dealerName;
-    playerTitle.innerText=Player.playerName;
+    
     // init values and flags
     /* waiting for the event */
     newGamebutton.addEventListener("click",function(){
         gameStated=true;
         initGame();
-        stat_game();
+        start_game();
         newGamebutton.style.display='none';
         hitButton.style.display='inline';
         stayButton.style.display='inline';

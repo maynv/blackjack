@@ -18,6 +18,7 @@
     display: flex;
     flex-direction: column ;
     justify-content: space-around;
+    /* background-color: rgb(64, 77, 73); */
 }
 #main-title{
     /* background-color: blanchedalmond; */
@@ -55,6 +56,7 @@
     padding: 3pt;
     
     display: flex;
+    flex-direction: row;
     height:500pt;
     /* background-color: aqua; */
     /* background-color: aquamarine; */  
@@ -119,6 +121,8 @@
 }
 .player-common{
     height : 200pt;
+    display: flex;
+    flex-direction: row;
  /* /   background-color: beige; */
     border-style: ridge; 
     border-color: aqua;
@@ -138,4 +142,38 @@
 }
 #this{
     background-color: azure;
+}
+.player-avatar{
+    height: 80pt;
+    width: 80pt;
+    border-style: solid;
+    border-color: rgb(212, 230, 51);
+}
+.player-informaton{
+    height: 80pt;
+    width: 150pt;
+    margin-left: 10pt;
+    margin-top: 10pt;
+    /* border-style: solid; */
+    /* border-color: tomato; */
+}
+#ingame-information{
+    height: 80pt;
+    width: 170pt;
+     /* border-style: solid; */ 
+     /* border-color: tomato; */ 
+}
+.player-title{
+    font-size: 20pt;
+    color: red;
+}
+#dealer-title{
+    
+}
+.player-id{
+    font-size : 10pt;
+    color: black;
+}
+.player-budget{
+    color: yellowgreen;
 }
