@@ -56,25 +56,29 @@
     
     display: flex;
     height:500pt;
-    background-color: aqua;
+    /* background-color: aqua; */
     /* background-color: aquamarine; */  
+}
+#dealer-common{
+    height: 200pt;
+    margin-top: 2pt;
 }
 #dealer-container{
     width: 30%;
     flex-direction: column;
-    background-color: rgb(122, 141, 204);
+    /* background-color: rgb(122, 141, 204); */
     display: flex;
 }
 #player-container{
     display: flex;
     flex-direction: row;
-    background-color: rgb(173, 219, 204);
+    /* background-color: rgb(173, 219, 204); */
     width: 70%;
 }
 .list-player{
     padding: 2pt;
     width : 190pt;
-    background-color: aqua;
+    /* background-color: aqua; */
     display: flex;
     flex-direction: column;
     /* justify-content: space-around; */
@@ -116,10 +120,13 @@
 .player-common{
     height : 200pt;
  /* /   background-color: beige; */
+    border-style: ridge; 
+    border-color: aqua;
 }
 .player-ingame{
     display: flex;
     flex-direction: column;
+    /* border-style: ridge;  */
 }
 #player-infor{
     background-color: orange;
